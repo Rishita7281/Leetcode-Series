@@ -1,0 +1,34 @@
+Solution of this problem:-
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int min_price = prices[0];
+        int max_profit = 0;
+        for (int i = 0; i < prices.size(); i++) {
+          if (prices[i] < min_price) {
+           min_price = prices[i];
+            } else {
+                max_profit = max(max_profit, prices[i] - min_price);
+            }
+        }
+        return max_profit;
+    }
+};
+
+
+**Explanation:**
+
+1. It initializes two variables:
+   - `min_price`: Tracks the minimum stock price encountered while iterating through the vector.
+   - `max_profit`: Tracks the maximum profit that can be obtained.
+
+2. The method then iterates through the `prices` vector using a `for` loop.
+
+3. Inside the loop:
+   - If the current price (`prices[i]`) is lower than the current minimum price (`min_price`), it updates the minimum price.
+   - If the current price is not lower, it calculates the profit that could be obtained by selling at the current price (`prices[i] - min_price`) and updates the maximum profit if the calculated profit is greater than the current maximum profit.
+
+4. After iterating through the entire vector, the method returns the maximum profit that can be obtained.
+
+This code uses a simple one-pass approach to iterate through the prices, keeping track of the minimum price and updating the maximum profit accordingly. The time complexity of this solution is O(n), where n is the size of the `prices` vector.
