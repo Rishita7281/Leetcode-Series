@@ -1,0 +1,54 @@
+Solution of Problem 2176:- Count Equal and Divisible Pairs in an Array:-
+
+class Solution {
+public:
+    int countPairs(vector<int>& nums, int k) {
+        int ans = 0;
+
+        // Nested loops to iterate through all pairs of indices (i, j) in the vector
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                // Check if the elements at indices i and j are equal and (i * j) is divisible by k
+                if (nums[i] == nums[j] && (i * j) % k == 0) {
+                    ans++;  // Increment the count of pairs that satisfy the condition
+                }
+            }
+        }
+
+        // Return the final count of pairs
+        return ans;
+    }
+};
+
+Explanation of the above code:-
+
+1.Class Declaration:
+
+The code defines a class named Solution.
+
+2.Public Method:
+
+The class has a public method countPairs that takes a vector of integers (nums) and an integer k.
+
+3.Initialization:
+
+The variable ans is initialized to 0. This variable will be used to store the count of pairs that satisfy the given conditions.
+
+4.Nested Loops:
+
+Two nested for loops are used to iterate through all pairs of indices (i, j) in the vector nums. The outer loop iterates over i, and the inner loop iterates over j such that j is greater than i.
+
+5.Condition Check:
+
+Inside the nested loops, an if statement checks two conditions:
+nums[i] == nums[j]: Checks if the elements at indices i and j in the vector are equal.
+(i * j) % k == 0: Checks if the product of i * j is divisible by k.
+
+6.Counting:
+
+If both conditions are satisfied, the code increments the ans variable, indicating that a pair has been found that meets the specified conditions.
+
+7.Return Statement:
+
+Finally, the method returns the count stored in the ans variable, representing the total number of pairs that satisfy the conditions.
+In summary, the code aims to count the number of pairs of indices (i, j) in the given vector nums such that nums[i] is equal to nums[j] and the product of i * j is divisible by the provided integer k.
