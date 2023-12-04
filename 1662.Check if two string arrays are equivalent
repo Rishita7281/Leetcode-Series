@@ -1,0 +1,47 @@
+Solution of the problem 1662 is:-
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        // Declare two empty strings to concatenate the strings in the vectors
+        string left;
+        string right;
+
+        // Concatenate all strings in word1
+        for(int i = 0; i < word1.size(); i++)
+            left += word1[i];
+
+        // Concatenate all strings in word2
+        for(int i = 0; i < word2.size(); i++)
+            right += word2[i];
+
+        // Check if the concatenated strings are equal
+        return left == right;
+    }
+};
+
+
+Explanation:-
+
+1.Class Declaration:
+
+The code defines a class named Solution.
+
+2.Public Method:
+
+The class has a public method arrayStringsAreEqual, which takes two vector references of strings (word1 and word2).
+
+3.String Concatenation:
+
+Inside the method, two empty strings left and right are declared to store the concatenation of strings from word1 and word2, respectively.
+
+Two for loops are used to iterate over each string in word1 and word2, and their contents are concatenated to the corresponding strings left and right.
+
+4.Comparison:
+
+After concatenating all strings in both vectors, the method compares the two resulting strings (left and right) using the equality operator (==).
+
+5.Return Statement:
+
+The method returns true if the concatenated strings are equal and false otherwise.
+In summary, the purpose of this code is to check if the concatenation of strings in word1 is equal to the concatenation of strings in word2. If they are equal, the method returns true; otherwise, it returns false.
