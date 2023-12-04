@@ -1,0 +1,40 @@
+Solution of 1920:-Build Array from Permutation 
+
+class Solution {
+public:
+    vector<int> buildArray(vector<int>& nums) {
+        // Declare a vector to store the result
+        vector<int> res;
+
+        // Iterate through each element in the nums array
+        for (int i = 0; i < nums.size(); i++) {
+            // Add the element at the index specified by the current element in nums
+            res.push_back(nums[nums[i]]);
+        }
+
+        // Return the resulting array
+        return res;
+    }
+};
+
+Explanation of the above code:-
+
+1.Class Declaration:
+The code defines a class named Solution.
+
+2.Public Method:
+The class has a public method buildArray that takes a vector of integers (nums).
+
+3.Result Vector:
+Inside the method, a vector res is declared. This vector will be used to store the elements of the resulting array.
+
+4.Iteration through nums:
+The code uses a for loop to iterate through each element in the nums array.
+
+5.Building the Resulting Array (res):
+For each element in nums, the code does the following:
+nums[i]: Retrieves the value at the current index i in the original array nums.
+res.push_back(nums[nums[i]]): Adds the value at the index specified by the current element in nums to the res vector.
+
+6.Return Statement:
+Finally, the method returns the resulting vector res.
