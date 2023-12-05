@@ -1,0 +1,49 @@
+Solution of the problem 606:-Construct String from Binary Tree
+
+class Solution {
+public:
+    string preordertraversal(TreeNode* root) {
+        if (root == nullptr)
+            return "";
+
+        string res = "";
+        res += to_string(root->val);
+        string left = preordertraversal(root->left);
+        string right = preordertraversal(root->right);
+
+        if (right == "") {
+            if (left != "")
+                res += "(" + left + ")";
+        } else {
+            res += "(" + left + ")(" + right + ")";
+        }
+
+        return res;
+    }
+
+    string tree2str(TreeNode* root) {
+        return preordertraversal(root);
+    }
+};
+
+Explanation of the above solution:-
+
+1:-Preorder Traversal Function (preordertraversal):
+
+This function performs a preorder traversal of the binary tree and constructs a string representation.
+It starts by checking if the current node (root) is nullptr (null). If so, it returns an empty string.
+The value of the current node is appended to the result string (res).
+Recursive calls are made to the left and right subtrees, and their results are stored in the left and right strings, respectively.
+The function then handles the formatting of the string based on the presence of left and right subtrees:
+If the right subtree is empty, parentheses are added around the left subtree only if it is not empty.
+If the right subtree is not empty, both left and right subtrees are enclosed in parentheses.
+The final result is the constructed string representation of the binary tree.
+
+2:-Tree to String Conversion Function (tree2str):
+
+This function is essentially a wrapper for preordertraversal.
+It takes the root of a binary tree as an argument and returns the result of calling preordertraversal on that tree.
+
+3:-Example Usage:
+
+Users can create a binary tree and use the tree2str function to obtain a string representation.
