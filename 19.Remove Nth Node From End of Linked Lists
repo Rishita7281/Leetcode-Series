@@ -1,0 +1,61 @@
+Solution of the given problem:-
+class Solution {
+public:
+    ListNode* reverse(ListNode* head) {
+        ListNode* prev = NULL;
+        while (head != NULL) {
+            ListNode* nextnode = head->next;
+            head->next = prev;
+            prev = head;
+            head = nextnode;
+        }
+        return prev;
+    }
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        head = reverse(head);
+
+        ListNode* current = head;
+        ListNode* prev = NULL;
+        for (int i = 1; i < n; ++i) {
+            prev = current;
+            current = current->next;
+        }
+
+        if (prev != NULL) {
+            prev->next = current->next;
+        } else {
+            head = current->next;
+        }
+        head = reverse(head);
+
+        return head;
+    }
+};
+
+Explanation of the above code:-
+1:-ListNode* reverse(ListNode* head) {
+
+This function takes a pointer to the head of a linked list as an input and reverses the linked list in-place.
+ListNode* prev = NULL;: Initializes a pointer prev to NULL, which will be used to keep track of the previous node in the reversed list.
+while (head != NULL) {: Enters a loop that continues until the end of the original list is reached.
+ListNode* nextnode = head->next;: Saves the next node in the original list.
+head->next = prev;: Reverses the direction of the next pointer of the current node to point to the previous node.
+prev = head;: Moves prev to the current node.
+head = nextnode;: Moves head to the next node in the original list.
+return prev;: Returns the new head of the reversed list.
+
+2:-ListNode* removeNthFromEnd(ListNode* head, int n) {
+
+This function takes a pointer to the head of a linked list and an integer n as inputs. It removes the nth node from the end of the linked list.
+head = reverse(head);: Reverses the linked list using the reverse function.
+ListNode* current = head;: Initializes a pointer current to the head of the reversed list. This pointer will be used to traverse the list to find the nth node from the beginning.
+ListNode* prev = NULL;: Initializes a pointer prev to NULL. It will be used to keep track of the node before the nth node in the reversed list.
+for (int i = 1; i < n; ++i) {: Enters a loop that iterates n-1 times, moving current pointer to the nth node from the beginning of the reversed list.
+prev = current;: Updates prev to the current value of current before current is moved to the next node.
+current = current->next;: Moves the current pointer to the next node in the reversed list.
+}: Closes the for loop.
+if (prev != NULL) { prev->next = current->next; } else { head = current->next; }: Skips the nth node by updating the next pointer of the node before it to point to the node after it, or updates the head if the nth node is the first node in the reversed list.
+head = reverse(head);: Reverses the linked list again using the reverse function.
+return head;: Returns the pointer to the head of the modified linked list.
