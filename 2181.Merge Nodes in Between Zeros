@@ -1,0 +1,73 @@
+Solution of the given problem:-
+class Solution {
+public:
+    ListNode* mergeNodes(ListNode* head) {
+        ListNode* curr = head;
+        ListNode* temp = curr;
+        curr = curr->next;
+        int sum = 0;
+
+        while (curr != nullptr) {
+            if (curr->val != 0) {
+                sum += curr->val;
+            } else {
+                temp->val = sum;
+
+                if (curr->next != nullptr) {
+                    temp->next = curr;
+                    sum = 0;
+                    temp = curr;
+                } else {
+                    temp->next = nullptr;
+                }
+            }
+            curr = curr->next;
+        }
+        
+        return head;
+    }
+};
+
+Explanation of the above code:-
+1:-ListNode* mergeNodes(ListNode* head) {
+
+This line declares the function mergeNodes, which takes a pointer to the head of a linked list (ListNode* head) as a parameter. It returns a pointer to the head of the modified linked list.
+2:-ListNode* curr = head;
+
+Initializes a pointer curr to the head of the linked list. This pointer is used to traverse the list.
+3:-ListNode* temp = curr;
+
+Initializes a temporary pointer temp to the current node. This pointer is used to track the starting node of each sequence of non-zero values.
+4:-curr = curr->next;
+
+Moves curr to the next node in the list. This is done to start processing from the second node.
+5:-int sum = 0;
+
+Initializes a variable sum to zero. This variable is used to accumulate the sum of non-zero values in a sequence.
+6:-while (curr != nullptr) {
+
+Enters a loop that iterates through the linked list until the end is reached.
+7:-if (curr->val != 0) { sum += curr->val; }
+
+Checks if the current node's value is non-zero. If so, it adds the value to the sum.
+else {
+
+If the current node's value is zero, it enters the else block.
+8:-temp->val = sum;
+
+Assigns the accumulated sum to the val of the node pointed to by temp. This effectively replaces the zero value with the sum of non-zero values.
+9:-if (curr->next != nullptr) { temp->next = curr; sum = 0; temp = curr; }
+
+If the next node is not nullptr, it means there are more nodes to process. It links temp->next to the current node (curr), resets the sum to zero, and moves temp to the current node.
+10:-else { temp->next = nullptr; }
+
+If the next node is nullptr, it means the end of the list is reached. It sets temp->next to nullptr to indicate the end of the modified list.
+11:-curr = curr->next;
+
+Moves curr to the next node in the list to continue the loop.
+}
+
+Closes the while loop.
+return head;
+
+Returns the pointer to the head of the modified linked list.
