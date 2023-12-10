@@ -1,0 +1,50 @@
+Solution of the above problem:-
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* list1 = new ListNode(0);
+        ListNode* list2 = new ListNode(0);
+        ListNode* l1 = list1;
+        ListNode* l2 = list2;
+
+        while (head) {
+            if (head->val < x) {
+                l1->next = head;
+                l1 = l1->next;
+            } else {
+                l2->next = head;
+                l2 = l2->next;
+            }
+            head = head->next;
+        }
+
+        l1->next = list2->next;
+        l2->next = nullptr;
+
+        return list1->next;
+    }
+};
+Explanation of the bove code:-
+1:-Dummy Nodes Initialization:
+
+ListNode* list1 = new ListNode(0); and ListNode* list2 = new ListNode(0);: Two dummy nodes, list1 and list2, are created. These dummy nodes will be used to simplify the insertion process.
+2:-Pointer Initialization:
+
+ListNode* l1 = list1; and ListNode* l2 = list2;: Two pointers, l1 and l2, are initialized to the dummy nodes. These pointers will be used to build two separate lists.
+3:-Traversing the Original List:
+
+while (head) {: Enters a loop to traverse the original linked list (head).
+4:-Partitioning the List:
+
+if (head->val < x) { l1->next = head; l1 = l1->next; }: If the current node's value is less than x, it is appended to list1, and l1 is updated to the new last node of list1.
+else { l2->next = head; l2 = l2->next; }: If the current node's value is greater than or equal to x, it is appended to list2, and l2 is updated to the new last node of list2.
+5:-Moving to the Next Node:
+
+head = head->next;: Moves the head pointer to the next node in the original list.
+6:-Connecting the Lists:
+
+l1->next = list2->next;: Connects the end of list1 to the beginning of list2.
+l2->next = nullptr;: Sets the end of list2 to nullptr to terminate the second list.
+7:-Returning the Result:
+
+return list1->next;: Returns the next node of the dummy node in list1, which is the head of the updated linked list.
