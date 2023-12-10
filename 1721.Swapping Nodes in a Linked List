@@ -1,0 +1,43 @@
+Solution of the given problem:-
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+     
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(--k){
+            fast=fast->next;
+        }
+       ListNode* first=fast;
+        while(fast->next!=nullptr){
+            slow=slow->next;
+            fast=fast->next;
+            
+        }
+        swap(first->val,slow->val);
+        return head;
+
+        }};
+        
+Explanation of the above code:-
+1:-ListNode* slow = head;
+
+Initializes a pointer slow to the head of the linked list. This pointer will be used to traverse the list and find the first node to be swapped.
+2:-ListNode* fast = head;
+
+Initializes a pointer fast to the head of the linked list. This pointer will be used to traverse the list and find the second node to be swapped.
+3:-while (--k) { fast = fast->next; }
+
+Enters a loop that moves the fast pointer to the k-th node from the beginning of the list by decrementing k until it becomes zero.
+4:-ListNode* first = fast;
+
+Stores the current position of the fast pointer in a new pointer first. This represents the first node to be swapped.
+5:-while (fast->next != nullptr) { slow = slow->next; fast = fast->next; }
+
+Enters a loop that moves both the slow and fast pointers until the fast pointer reaches the end of the list. This effectively positions slow at the k-th node from the end of the list.
+6:-swap(first->val, slow->val);
+
+Swaps the values of the first and last nodes found in the previous steps.
+7:-return head;
+
+Returns the pointer to the head of the modified linked list.
