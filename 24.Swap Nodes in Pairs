@@ -1,0 +1,35 @@
+Solution of the above problem:-
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(head==nullptr || head->next==nullptr)
+        return head;
+        ListNode* first=head;
+        ListNode* second=head->next;
+        first->next=swapPairs(second->next); 
+        second->next=first;
+        return second;
+        }};
+
+Explanation of the above code:-
+1:-ListNode* swapPairs(ListNode* head) {
+
+This line declares the function swapPairs, which takes a pointer to the head of a linked list (ListNode* head) as a parameter. It returns a pointer to the head of the modified linked list.
+2:-if (head == nullptr || head->next == nullptr) return head;
+
+Checks if the linked list is either empty or has only one node. If so, there is no need to perform any swaps, and the function returns the head unchanged.
+3:-ListNode* first = head;
+
+Initializes a pointer first to the head of the linked list. This pointer represents the first node in the pair to be swapped.
+4:-ListNode* second = head->next;
+
+Initializes a pointer second to the next node after first. This pointer represents the second node in the pair to be swapped.
+5:-first->next = swapPairs(second->next);
+
+Recursively calls swapPairs on the node after the second node. This effectively links the rest of the list after the second node to the first node after swapping the pairs.
+6:-second->next = first;
+
+Links the second node to the first node, completing the swap.
+7:-return second;
+
+Returns the pointer to the head of the modified linked list, which is now the second node in the swapped pair.
