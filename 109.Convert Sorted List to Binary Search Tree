@@ -1,0 +1,50 @@
+Solution of the given problem:-
+class Solution {
+public:
+    TreeNode* sortedListToBST(ListNode* head) {
+        if (head == nullptr)
+            return nullptr;
+        if (head->next == nullptr)
+            return new TreeNode(head->val);
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* mid = slow;
+
+        while (fast != nullptr && fast->next != nullptr) {
+            mid = slow;
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+
+        TreeNode* node = new TreeNode(slow->val);
+        mid->next = nullptr;
+        node->left = sortedListToBST(head);
+        node->right = sortedListToBST(slow->next);
+
+        return node;
+    }
+};
+Explanation of the above code:-
+Base Cases:
+
+The function starts with two base cases:
+if (head == nullptr): If the linked list is empty, it returns nullptr since there's no tree to construct.
+if (head->next == nullptr): If the linked list has only one node, it creates a new TreeNode with the value of that node and returns it. This represents a single-node tree.
+Finding the Middle of the Linked List:
+
+The function then proceeds to find the middle of the linked list using the slow and fast pointers. The slow pointer (slow) moves one node at a time, and the fast pointer (fast) moves two nodes at a time. The mid pointer is used to keep track of the middle node when the fast pointer reaches the end. This is a common technique for finding the middle of a linked list.
+Creating a TreeNode:
+
+Once the middle of the linked list is found, a new TreeNode is created with the value of the middle node (slow->val).
+Breaking the Linked List:
+
+The linked list is then broken into two parts at the middle (mid->next = nullptr). This is done to separate the nodes that will go into the left subtree from the nodes that will go into the right subtree.
+Recursively Building Subtrees:
+
+The function is then called recursively to construct the left and right subtrees:
+node->left = sortedListToBST(head);: Constructs the left subtree using the nodes before the middle.
+node->right = sortedListToBST(slow->next);: Constructs the right subtree using the nodes after the middle.
+Return Root Node:
+
+Finally, the function returns the root of the resulting binary search tree.
