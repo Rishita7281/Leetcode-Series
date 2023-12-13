@@ -1,0 +1,30 @@
+Solution of the given problem:-
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int,vector<int>,greater<int>>minh;
+        for(int i=0;i<nums.size();i++){
+            minh.push(nums[i]);
+            if(minh.size()>k)
+            minh.pop();
+        }
+        return minh.top();
+    }
+};
+
+Explanation of the above code:-
+Priority Queue Initialization:
+
+priority_queue<int, vector<int>, greater<int>> minh;: Initializes a min heap (minh) using a priority queue. The greater<int> comparator ensures that the smallest element is at the top of the heap.
+Iterating Through Elements:
+
+for (int i = 0; i < nums.size(); i++) { ... }: Iterates through the elements of the input vector nums.
+Pushing Elements into Min Heap:
+
+minh.push(nums[i]);: Pushes the current element (nums[i]) into the min heap.
+Maintaining Size of Min Heap:
+
+if (minh.size() > k) minh.pop();: Checks if the size of the min heap exceeds k. If so, pops the smallest element from the heap, ensuring that the heap size is always k.
+Return kth Largest Element:
+
+return minh.top();: Once all elements are processed, the top of the min heap contains the kth largest element. Returns this element as the result.
