@@ -1,0 +1,35 @@
+Solution of the given problem:-
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        priority_queue<int,vector<int>,greater<int>>minh;
+        vector<int>v;
+        for(int i=0;i<nums.size();i++){
+            minh.push(nums[i]);
+        }
+        while(!minh.empty()){
+            v.push_back(minh.top());
+             minh.pop();
+        }
+        return v;
+    }
+};
+
+Explanation of the above code:-
+
+Priority Queue Initialization:
+
+priority_queue<int, vector<int>, greater<int>> minh;: Initializes a min heap (priority queue) using the greater<int> comparator, which ensures that the top of the heap contains the smallest element.
+Result Vector Initialization:
+
+vector<int> v;: Initializes an empty vector v to store the sorted elements.
+Pushing Elements into Min Heap:
+
+for (int i = 0; i < nums.size(); i++) { minh.push(nums[i]); }: Iterates through all elements of the input array (nums) and pushes them into the min heap.
+Pop Elements from Min Heap:
+
+while (!minh.empty()) { v.push_back(minh.top()); minh.pop(); }: Enters a loop where it pops elements from the min heap and appends them to the result vector (v). This process continues until the min heap is empty.
+Return the Sorted Vector:
+
+return v;: Returns the vector v, which now contains the elements of the original array sorted in ascending order.
