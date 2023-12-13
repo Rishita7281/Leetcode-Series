@@ -1,0 +1,52 @@
+Solution of the above problem:-
+class Solution {
+public:
+    int maximumScore(int a, int b, int c) {
+        int res=0;
+        priority_queue<int>maxh;
+        maxh.push(a);
+        maxh.push(b);
+        maxh.push(c);
+        while(maxh.top()>0){
+            int f; if(maxh.top()>0){
+                f=maxh.top();
+                maxh.pop();
+            }
+            int s;
+            if(maxh.top()>0){
+                s=maxh.top();
+                maxh.pop();
+            }
+            else{                break;
+            }
+            maxh.push(f-1);
+            maxh.push(s-1);
+            res++;
+        }
+        return res;
+    }
+}; 
+Explanation of the above code:-
+Initialization:
+
+int res = 0;: Initializes a variable res to store the result (maximum score).
+priority_queue<int> maxh;: Creates a priority queue (max heap) to efficiently retrieve the two largest integers.
+Push Integers into Max Heap:
+
+maxh.push(a); maxh.push(b); maxh.push(c);: Pushes the input integers a, b, and c into the max heap.
+Main Loop - Performing Operations:
+
+while (maxh.top() > 0) { ... }: Continues the process as long as the largest integer in the max heap is greater than 0.
+Retrieve and Update Integers:
+
+int f; if (maxh.top() > 0) { f = maxh.top(); maxh.pop(); }: Retrieves the largest integer (f) from the max heap and decreases it by 1.
+int s; if (maxh.top() > 0) { s = maxh.top(); maxh.pop(); } else { break; }: Retrieves the second largest integer (s) from the max heap and decreases it by 1. If there is no second integer, breaks out of the loop.
+Push Updated Integers Back into Max Heap:
+
+maxh.push(f - 1); maxh.push(s - 1);: Pushes the updated first and second integers back into the max heap.
+Increment Result (Score):
+
+res++;: Increments the result (score) since an operation has been performed.
+Return Maximum Score:
+
+return res;: Returns the final result, which represents the maximum score achievable.
