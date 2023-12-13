@@ -1,0 +1,48 @@
+Solution of the given problem:-
+class Solution {
+public:
+    int minStoneSum(vector<int>& piles, int k) {
+        priority_queue<int> maxh;
+        for (int i = 0; i < piles.size(); i++) {
+            maxh.push(piles[i]);
+        }
+        while (k--) {
+           
+            int move = maxh.top();
+            move = move - move / 2;
+            maxh.pop();
+            maxh.push(move);
+        }
+        int res = 0;
+        while (!maxh.empty()) {
+            res += maxh.top();
+            maxh.pop();
+        }
+        return res;
+    }
+};
+
+Explanation of the above cod:-
+
+Priority Queue Initialization:
+
+priority_queue<int> maxh;: Initializes a max heap (priority queue) to efficiently find and update the maximum pile size.
+Push Initial Pile Sizes into Max Heap:
+
+for (int i = 0; i < piles.size(); i++) { maxh.push(piles[i]); }: Iterates through the initial pile sizes and pushes them into the max heap.
+Perform k Operations:
+
+while (k--) { ... }: Enters a loop to perform k operations.
+Get the Maximum Pile Size and Update:
+
+int move = maxh.top();: Retrieves the size of the pile with the maximum size from the max heap.
+move = move - move / 2;: Reduces the size of the pile by half.
+Pop Original Size and Push Updated Size:
+
+maxh.pop(); maxh.push(move);: Pops the original size from the max heap and pushes the updated size back into the max heap.
+Calculate Sum of Remaining Piles:
+
+int res = 0; while (!maxh.empty()) { res += maxh.top(); maxh.pop(); }: Calculates the sum of the remaining pile sizes in the max heap.
+Return Final Result:
+
+return res;: Returns the final result, which is the minimized sum of the piles after performing k operations.
