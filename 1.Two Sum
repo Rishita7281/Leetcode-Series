@@ -1,0 +1,24 @@
+Solution of the given problem:-
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        for (int i=0;i<nums.size();i++){
+            for (int j=i+1;j<nums.size();j++){
+            if(nums[i]+nums[j]==target)  {return {i,j};
+        }}
+        }
+        return {};
+    }   
+};
+Explanation of the above code:-
+Nested Loop Iteration:
+
+for (int i = 0; i < nums.size(); i++) {: This loop iterates through each element in the array using the index i.
+for (int j = i + 1; j < nums.size(); j++) {: This nested loop iterates through the elements following the current element at index i to avoid considering the same pair twice.
+Checking Sum:
+
+if (nums[i] + nums[j] == target) { return {i, j}; }: Checks if the sum of the current pair of numbers (nums[i] and nums[j]) is equal to the target. If it is, the indices of the two numbers are returned in a vector {i, j}.
+Returning Result:
+
+If the correct pair is found during the iteration, the function immediately returns with the vector containing the indices of the two numbers that add up to the target.
+If no such pair is found after exhausting all possible combinations, an empty vector is returned.
