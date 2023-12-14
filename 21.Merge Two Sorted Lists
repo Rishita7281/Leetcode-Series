@@ -1,0 +1,31 @@
+Solution of the given problem:-
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+     if(list1==nullptr)return list2;if(list2==nullptr)return list1;
+     if(list1->val<=list2->val){list1->next=mergeTwoLists(list1->next,list2);return list1;}
+     else{list2->next=mergeTwoLists(list1,list2->next);return list2;}
+    }
+};
+Explanation of the above code:-
+Base Cases:
+
+if (list1 == nullptr) return list2;: If list1 is empty, return list2.
+if (list2 == nullptr) return list1;: If list2 is empty, return list1.
+These are the base cases that terminate the recursion when one of the lists is empty.
+Recursive Merging:
+
+if (list1->val <= list2->val) { ... } else { ... }: Compares the values of the current nodes in list1 and list2.
+
+If the value in list1 is smaller or equal, it means that the smallest node should come from list1.
+
+Recursively merge the rest of list1 with list2, and update the next pointer of the current node in list1.
+
+If the value in list2 is smaller, it means that the smallest node should come from list2.
+
+Recursively merge the rest of list2 with list1, and update the next pointer of the current node in list2.
+
+Return Merged List:
+
+The function returns the head of the merged list after the recursive merging process.
