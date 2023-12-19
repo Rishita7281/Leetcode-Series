@@ -1,0 +1,42 @@
+Solution of the above problem:-
+
+class Solution {
+public:
+    TreeNode* create(vector<int>& nums, int left, int right) {
+        if (left > right) {
+            return nullptr; // Base case: no elements in the array
+        }
+
+        int mid = left + (right - left) / 2;
+        TreeNode* root = new TreeNode(nums[mid]);
+
+        // Recursively build left and right subtrees
+        root->left = create(nums, left, mid - 1);
+        root->right = create(nums, mid + 1, right);
+
+        return root;
+    }
+
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        return create(nums, 0, nums.size() - 1);
+    }
+};
+Explanation of the above code:-
+Definition of TreeNode:
+
+A TreeNode structure is defined to represent a node in a binary tree.
+create Function:
+
+TreeNode* create(vector<int>& nums, int left, int right) { ... }: A private helper function that recursively builds a BST from a sorted array. It takes the array (nums), left index, and right index as parameters.
+if (left > right) { return nullptr; }: Base case - if the left index exceeds the right index, return nullptr (no elements in the array).
+int mid = left + (right - left) / 2;: Calculate the middle index of the current range.
+TreeNode* root = new TreeNode(nums[mid]);: Create a new node with the value of the middle element.
+Recursively call create to build the left and right subtrees.
+return root;: Return the root of the subtree.
+sortedArrayToBST Function:
+
+TreeNode* sortedArrayToBST(vector<int>& nums) { return create(nums, 0, nums.size() - 1); }: Public function that initializes the creation of the BST by calling the private create function with the entire array and the range [0, nums.size() - 1].
+Usage:
+
+Create an instance of the Solution class.
+Call sortedArrayToBST with a sorted array to obtain the root of the resulting BST.
