@@ -1,0 +1,51 @@
+Solution of the given problem:
+#include <stack>
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0) {
+            // Negative numbers are not palindromes
+            return false;
+        }
+
+        int original = x;
+        stack<int> st;
+
+        // Push each digit of the number into the stack
+        while (x > 0) {
+            int digit = x % 10;
+            st.push(digit);
+            x /= 10;
+        }
+
+        // Pop each digit from the stack and check if it matches the original number
+        while (!st.empty()) {
+            int digit = st.top();
+            st.pop();
+            if (digit != original % 10) {
+                return false;
+            }
+            original /= 10;
+        }
+
+        return true;
+    }
+};
+Explanation of the above code:-
+Check for Negative Numbers:
+
+if (x < 0) { return false; }: Negative numbers are not palindromes, so the function returns false for negative inputs.
+Copy Original Value:
+
+int original = x;: Create a copy of the original number to compare against later.
+Push Digits into Stack:
+
+while (x > 0) { ... }: Loop through each digit of the number and push it into the stack.
+Pop and Check Digits:
+
+while (!st.empty()) { ... }: Pop each digit from the stack and compare it with the last digit of the original number.
+Return Result:
+
+If all digits match, the number is a palindrome, and the function returns true.
+    
