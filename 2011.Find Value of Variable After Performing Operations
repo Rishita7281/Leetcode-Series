@@ -1,0 +1,33 @@
+Solution of the above problem:-
+class Solution {
+public:
+  int finalValueAfterOperations(vector<string>& operations) {
+ int x=0;
+        int n=operations.size();
+        while(n--)
+        {
+            if(operations[n]=="--X") --x;
+            else if(operations[n]=="X--")x--;
+            else if(operations[n]=="X++")x++;
+            else if(operations[n]=="++X")++x;
+        }
+        return x;
+    }
+Explanation of the above code:-
+Initialization:
+
+int x = 0;: Initialize a variable x to 0. This variable will be updated based on the operations.
+Processing Operations:
+
+int n = operations.size();: Get the size of the operations vector.
+while (n--) { ... }: Loop through each operation in reverse order.
+Operation Handling:
+
+Check the type of each operation and update the value of x accordingly.
+If the operation is "--X", decrement x by 1.
+If the operation is "X--", decrement x by 1.
+If the operation is "X++", increment x by 1.
+If the operation is "++X", increment x by 1.
+Return Final Value:
+
+return x;: Return the final value of x after all operations have been processed.
