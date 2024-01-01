@@ -1,0 +1,25 @@
+Solution of the given problem:-
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        // Sort the sizes of children and cookies in ascending order
+        sort(g.begin(), g.end());
+        sort(s.begin(), s.end());
+
+        int i = 0;  // Index for iterating through the sizes of children (g)
+        int j = 0;  // Index for iterating through the sizes of cookies (s)
+        int count = 0;  // Count of satisfied children
+
+        // Iterate through the sizes of children and cookies
+        while (i < g.size() && j < s.size()) {
+            // If the current cookie size is sufficient for the current child
+            if (g[i] <= s[j]) {
+                count++;  // Increment the count of satisfied children
+                i++;      // Move to the next child
+            }
+            j++;  // Move to the next cookie (whether it's used or not)
+        }
+
+        return count;  // Return the total count of satisfied children
+    }
+};
