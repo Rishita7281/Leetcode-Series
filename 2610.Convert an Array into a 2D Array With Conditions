@@ -1,0 +1,43 @@
+Solution of the given problem:-
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        int count=0;
+        map<int,int>mp;
+        for(auto i:nums){
+            mp[i]++;
+            count=max(count,mp[i]);
+        }
+        vector<vector<int>>res(count);vector<set<int>>set(count);
+       for(auto i:nums)
+        {
+        for(int j=0;j<nums.size();j++){
+            if(set[j].find(i)==set[j].end()){
+                res[j].push_back(i);
+                set[j].insert(i);
+                break;
+            }
+        }
+    }
+    return res;
+    }};
+Explanation of the above code:-
+  
+Frequency Count:
+
+The code uses a std::map (mp) to count the frequency of each element in the input vector nums.
+Maximum Frequency:
+
+It keeps track of the maximum frequency encountered during the iteration.
+Matrix Initialization:
+
+It initializes the res matrix with the required number of rows equal to the maximum frequency.
+Set Initialization:
+
+It initializes a std::set for each row to keep track of unique elements in that row.
+Matrix Population:
+
+It iterates through each element in the input vector and populates each row of the matrix with unique elements based on the maximum frequency. A set is used to ensure uniqueness within each row.
+Return Result:
+
+The function returns the populated matrix as the result.
