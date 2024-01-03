@@ -1,0 +1,35 @@
+Solution and explanation of the given problem:-
+#include <vector>
+#include <string>
+
+class Solution {
+public:
+    int numberOfBeams(std::vector<std::string>& bank) {
+        // Initialize variables p and q
+        int p = 0;
+        int q = 0;
+
+        // Iterate through each string in the 'bank' vector
+        for (const auto& s : bank) {
+            // Initialize variable r to count the number of '1's in the current string
+            int r = 0;
+
+            // Iterate through each character in the current string
+            for (char c : s) {
+                // If the character is '1', increment the count (r)
+                if (c == '1') {
+                    ++r;
+                }
+            }
+
+            // If there is at least one '1' in the current string, update q and p
+            if (r > 0) {
+                q += r * p;  // Update q by adding the product of r and p
+                p = r;       // Update p to the current count (r)
+            }
+        }
+
+        // Return the final result (q)
+        return q;
+    }
+};
