@@ -1,0 +1,39 @@
+Solution of the given problem:-
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        unordered_map<int, int> mp;
+
+        // Count the occurrences of each unique element in the array
+        for (int i : nums) {
+            mp[i]++;
+        }
+
+        int operations = 0;
+
+        // Iterate through the occurrences of each unique element in the unordered_map
+        for (auto i : mp) {
+            int c = i.second;
+
+            // Check if there is only one occurrence of an element, return -1 as it's not possible to form pairs or triples
+            if (c == 1) {
+                return -1;
+            }
+
+            // Calculate the number of operations needed for each group of equal elements
+            if (c % 3 == 0) {
+                operations += c / 3;
+            } else {
+                // If the remainder is 1, it requires (c/3)-1 pairs and one triple
+                if (c % 3 == 1) {
+                    operations += (c / 3) - 1 + 2;
+                } else {
+                    // If the remainder is 2, it requires (c/3)+1 pairs and one triple
+                    operations += (c / 3) + 1;
+                }
+            }
+        }
+
+        return operations;
+    }
+};
