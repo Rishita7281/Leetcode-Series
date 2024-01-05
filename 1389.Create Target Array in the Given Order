@@ -1,0 +1,31 @@
+Solution of the given problem:-
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) {
+        vector<int> res;
+        
+        // Iterate through the elements of nums and index
+        for (int i = 0; i < nums.size(); i++) {
+            // Insert the value nums[i] at the specified index index[i]
+            res.insert(res.begin() + index[i], nums[i]);
+        }
+        
+        return res;
+    }
+};
+
+
+
+Explanation of the above code:-
+The function createTargetArray takes two vectors, nums and index, as input parameters.
+
+It initializes an empty vector res to store the final target array.
+
+The function then iterates through each element of the nums and index vectors using a for loop.
+
+For each iteration, it inserts the value nums[i] at the specified index index[i] in the res vector using the insert function.
+
+res.begin() + index[i] specifies the iterator position at which the insertion should occur.
+The function continues the iteration until all elements from nums are processed and inserted into the res vector based on the corresponding indices.
+
+Finally, the function returns the resulting target array res.
