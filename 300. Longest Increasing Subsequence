@@ -1,0 +1,38 @@
+Solution of the given problem:-
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> res;
+        res.push_back(nums[0]);
+        int count = 1;
+
+        for (int i = 1; i < nums.size(); i++) {
+            if (res.back() < nums[i]) {
+                // If nums[i] is greater than the last element in the subsequence,
+                // extend the subsequence and increment the count.
+                res.push_back(nums[i]);
+                count++;
+            } else {
+                // The current element nums[i] is not greater than the last element in the subsequence.
+                // We need to update the subsequence to ensure it remains strictly increasing.
+
+                // Manually find the position where nums[i] should be inserted in the subsequence.
+                int insertPosition = 0;
+                while (insertPosition < res.size() && res[insertPosition] < nums[i]) {
+                    insertPosition++;
+                }
+
+                // Update the subsequence at the found position with nums[i].
+                if (insertPosition < res.size()) {
+                    res[insertPosition] = nums[i];
+                } else {
+                    // If insertPosition is at the end, append nums[i] to the subsequence.
+                    res.push_back(nums[i]);
+                }
+            }
+        }
+
+        return count;
+    }
+};
